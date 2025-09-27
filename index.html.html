@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <title>Povzbudivá hláška týdne</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f0f8ff;
+      text-align: center;
+      padding: 20px;
+    }
+    .quote {
+      font-size: 2em;
+      max-width: 800px;
+    }
+  </style>
+</head>
+<body>
+  <div class="quote" id="quote"></div>
+
+  <script>
+    // Seznam hlášek
+    const quotes = ['Odpočinek není ztráta času, je to investice.', 'Nemusíš vědět všechno, stačí vědět dost.', 'Spánek je součást studia – bez něj se mozek neučí.', 'Dýchni zhluboka – svět se nezhroutí, když si na chvíli odpočineš.', 'Nejsi ve stresu sám – skoro každý student to zažívá.', 'To, že je to těžké, znamená, že rosteš.', 'Dělat chyby znamená, že se učíš.', 'Lepší mít práci nedokonalou než žádnou.', 'Nezapomeň: i malá vítězství se počítají.', 'Každý úkol má svůj konec, i když teď působí nekonečně.', 'Každý nápad, který zapíšeš, má svou hodnotu.', 'Piš nejdřív nahrubo – opravovat se dá vždycky.', 'Jedna odstavec dnes je lepší než tři zítra.', 'Každá stránka, kterou napíšeš, tě přibližuje k cíli.', 'I když to jde pomalu, pořád se posouváš dopředu.', 'Nemusíš být nejlepší – stačí být vytrvalý.', 'Chvíle klidu ti dá víc energie než další hodina u počítače.', 'Úzkost není selhání, je to signál, že potřebuješ pauzu.', 'Tvoje úsilí je důležitější než okamžitý výsledek.', 'I malý krok vpřed je vítězství.', 'I deset minut relaxu může změnit celý den.', 'Věříš si míň, než bys měl – zvládneš víc, než si myslíš.', 'Tlak je dočasný, ale výsledky zůstanou.', 'Tvoje zdraví má vždycky přednost.', 'Dokonalé dílo neexistuje, ale dokončené ano.'];
+
+    // Získání čísla týdne v roce
+    function getWeekNumber(date) {
+      const start = new Date(date.getFullYear(), 0, 1);
+      const diff = (date - start + ((start.getTimezoneOffset() - date.getTimezoneOffset()) * 60000));
+      const day = Math.floor(diff / 86400000) + 1;
+      return Math.ceil(day / 7);
+    }
+
+    const today = new Date();
+    const week = getWeekNumber(today);
+
+    // Vyber hlášku podle aktuálního týdne
+    const quote = quotes[week % quotes.length];
+
+    document.getElementById("quote").textContent = quote;
+  </script>
+</body>
+</html>
