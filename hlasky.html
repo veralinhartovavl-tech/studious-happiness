@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <title>Povzbudivá hláška týdne</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f0f8ff;
+      text-align: center;
+    }
+    .quote {
+      font-size: 2em;
+      max-width: 600px;
+    }
+  </style>
+</head>
+<body>
+  <div class="quote" id="quote"></div>
+
+  <script>
+    // Seznam hlášek
+    const quotes = [
+      "Nikdy není pozdě začít znovu.",
+      "Každý den je příležitost naučit se něco nového.",
+      "Neúspěch je jen krokem k úspěchu.",
+      "Malý krok vpřed je pořád krok správným směrem.",
+      "Tvoje úsilí se počítá víc, než si myslíš.",
+      "Máš na to!"
+    ];
+
+    // Získání čísla týdne v roce
+    function getWeekNumber(date) {
+      const start = new Date(date.getFullYear(), 0, 1);
+      const diff = (date - start + ((start.getTimezoneOffset() - date.getTimezoneOffset()) * 60000));
+      const day = Math.floor(diff / 86400000) + 1;
+      return Math.ceil(day / 7);
+    }
+
+    const today = new Date();
+    const week = getWeekNumber(today);
+
+    // Vyber hlášku podle aktuálního týdne
+    const quote = quotes[week % quotes.length];
+
+    document.getElementById("quote").textContent = quote;
+  </script>
+</body>
+</html>
